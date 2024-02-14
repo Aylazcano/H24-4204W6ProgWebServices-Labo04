@@ -1,5 +1,10 @@
 {
   "i18n":{
-
+    "title": "Bilingual roulette",
+    "textWithVar": "Your money : {{x}} $",
+    "text01": "Bet $ 5 on a number",
+    "text02": "Bet $ 5 on red",
+    "text03": "Bet $ 5 on black",
+    "text04": "Do not play if you’re easily dizzy"
   }
 }

@@ -1,5 +1,10 @@
 {
-  "i18n":{
-
+  "i18n": {
+    "title": "Roulette bilingue",
+    "textWithVar": "Votre argent : {{x}} $",
+    "text01": "Parier 5 $ sur un numéro",
+    "text02": "Parier 5 $ sur rouge",
+    "text03": "Parier 5 $ sur noir",
+    "text04": "Ne pas jouer si vous êtes facilement étourdi(e)"
   }
 }
