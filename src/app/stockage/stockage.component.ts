@@ -11,13 +11,19 @@ export class StockageComponent implements OnInit {
   name ?: string; // Lié à un input
   age ?: number; // Lié à un input
   profile ?: Profile;
+  jsonData : string | null = null;
 
   constructor() { }
 
   ngOnInit() {
     this.afficherIcones();
 
-    // Allo 👋
+    // Allo 👋      
+    this.jsonData = sessionStorage.getItem("profile");
+    if(this.jsonData != null){
+      this.profile = JSON.parse(this.jsonData);
+    }
+
   }
 
   createProfile() : void{
@@ -25,15 +31,18 @@ export class StockageComponent implements OnInit {
       return;
     }
     this.profile = new Profile(this.name, this.age, 20);
+    this.saveProfile();
   }
 
   clearProfile() : void{
     this.profile = undefined;
+    sessionStorage.clear();
   }
 
   // Vous pouvez appeler cette fonction à tous les endroits où le profil change 😉
   saveProfile():void{
     // METTRE this.profile DANS LE STOCKAGE LOCAL 💾
+    sessionStorage.setItem("profile",JSON.stringify(this.profile));
   }
 
   finJeu(){
@@ -42,6 +51,7 @@ export class StockageComponent implements OnInit {
         if(this.gImgCol[0][this.gIndex[0]] == this.gImgCol[1][this.gIndex[1]] && this.gImgCol[0][this.gIndex[0]] == this.gImgCol[2][this.gIndex[2]]){
           // L'ARGENT AUGMENTE DE 5 ICI ⛔
           this.profile!.money += 5;
+          this.saveProfile();
 
             document.getElementById("message")!.textContent = "Bien joué ! +5$ ";
         }
@@ -57,6 +67,7 @@ export class StockageComponent implements OnInit {
     }
     // L'ARGENT DIMINIE DE 1 ICI ⛔
     this.profile!.money -= 1;
+    this.saveProfile();
     this.gColActive[0] = true;
     this.gColActive[1] = true;
     this.gColActive[2] = true;
